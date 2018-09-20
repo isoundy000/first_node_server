@@ -3,6 +3,7 @@
  */
 Class({
     ClassName: "App.Lib.Agent.CAgentSystem",
+    Base:"App.Lib.CBaseSystem",
     agents:null,
     init: function () {
         this.agents = {};

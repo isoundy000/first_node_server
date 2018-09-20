@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<protocol>
+    <languages>
+        <language
+                lang="javascript"
+                namespace="App.Pb.Session"
+                path="codes/protocol/CPbSessionStruct.js"/>
+    </languages>
+
+    <header>./protocol/CPbSessionStruct</header>
+
+    <!-- required repeated optional -->
+    <struct name="C2SConnectRequest">
+        <required name="token" type="string"/>
+        <required name="token2" type="string"/>
+        <optional name="token3" type="string"/>
+        <repeated name="token4" type="string"/>
+    </struct>
+
+    <struct name="S2CConnectResponse">
+        <required name="result" type="bool"/>
+    </struct>
+
+    <struct name="S2CConnectContact">
+        <required name="result" type="S2CConnectResponse"/>
+    </struct>
+</protocol>

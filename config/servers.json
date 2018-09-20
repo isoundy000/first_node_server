@@ -1,4 +1,4 @@
 {
-  "game_server":[{"host":"127.0.0.1","port":3000,"type":"udp","front_host":"127.0.0.1","front_port":"3001","front_type":"tcp"}],
-  "fight_server":[{"name":"fight_server","host":"127.0.0.1","port":4000}]
+  "session":[{"host":"127.0.0.1","port":3000,"type":"udp","front_host":"127.0.0.1","front_port":"3001","front_type":"tcp"}],
+  "fight":[{"host":"127.0.0.1","port":4000}]
 }

@@ -3,6 +3,7 @@
  */
 Class({
     ClassName: "App.Lib.Channel.CChannelSystem",
+    Base:"App.Lib.CBaseSystem",
     globaleChannel:null,
     channels:null,
     init: function () {

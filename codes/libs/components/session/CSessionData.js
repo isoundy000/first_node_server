@@ -3,10 +3,15 @@
  */
 Class({
     ClassName: "App.Lib.Session.CSessionData",
-    init: function () {
-
-    },
-    clear: function () {
-
+    server:null,
+    host:null,
+    port:null,
+    agent:null,
+    id:null,
+    ctor:function(id,server,host,port){
+        this.id = id;
+        this.server = server;
+        this.host = host;
+        this.port = port;
     }
 })
