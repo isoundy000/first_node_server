@@ -3,10 +3,16 @@
  */
 Class({
     ClassName: "App.Lib.Server.CBaseServer",
+    beforStart:function(){
+    },
+    afterStart:function(){
+    },
     start:function(name,index,serverCfg){
+        this.beforStart();
         App.System.init();
         App.System.config(name,index,serverCfg);
         App.System.start();
+        this.afterStart();
     }
 })
 

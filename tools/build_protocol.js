@@ -11,14 +11,39 @@ var helper = {
         des:"../"
     },
     start:function(){
-        var files = fs.readdirSync(this.cfg.src);
+        var tmp= "front/";
+        var files = fs.readdirSync(this.cfg.src + tmp);
         for(var i=0;i<files.length;i++){
-            this.buildXml(this.cfg.src+files[i]);
+            this.buildXml(this.cfg.src + tmp + files[i],tmp);
+        }
+
+        tmp= "rpc/";
+        files = fs.readdirSync(this.cfg.src + tmp);
+        for(var i=0;i<files.length;i++){
+            if(files[i].endWith(".xml")){
+                this.buildXml(this.cfg.src + tmp + files[i],tmp);
+            }
         }
     },
-    buildXml:function(file){
+    buildXml:function(file,relative){
         var parser = new xml2js.Parser();
         var content = fs.readFileSync(file,"utf8");
+        while(true){
+            var r =  /\{\[(.+?)\]\}/g;
+            var rFiles = r.exec(content);
+            if(null == rFiles){
+                break;
+            }
+            var files = rFiles[1].split(",");
+            var str = "\n";
+            for(var i=0;i<files.length;i++){
+                str += fs.readFileSync("protocol/"+ relative +files[i],"utf8");
+            }
+            str +="\n";
+            var lstr = "{\\[{0}]\\}".Format(rFiles[1]);
+            content = content.replaceAll(lstr,str);
+        }
+
         var self = this;
         parser.parseString(content, function (err, result) {
             var data = result.protocol;
@@ -32,7 +57,7 @@ var helper = {
                     self[cfg.lang]["create_files_struct"](cfg,structs);
                 }
                 if(items){
-                    self[cfg.lang]["create_files_item"](cfg,self[cfg.lang]["create_files_imports"](data.import),items);
+                    self[cfg.lang]["create_files_item"](cfg,self[cfg.lang]["create_files_imports"](data.import,relative),items);
                 }
             }
         });
@@ -53,7 +78,7 @@ var helper = {
                 var obj = this.create_struct(data[i]);
                 messages.messages.push(obj);
             }
-            var str = "require('../libs/CAppSystem');\n\n";
+            var str = "require('../../libs/CAppSystem');\n\n";
             str += "App.Pb = App.Pb || {};\n"
             str += cfg.namespace + " = {}\n";
             str += cfg.namespace +".Structs = App.System.protobuf.newBuilder({})['import']("+JSON.stringify(messages, null, 2)+").build().proto;"
@@ -91,12 +116,12 @@ var helper = {
                 });
             }
         },
-        create_files_imports:function(data)
+        create_files_imports:function(data,relative)
         {
             var ret = {};
             for(var i=0;i<data.length;i++){
                 var struct = ret[data[0].split(".")[0]] = {};
-                this.create_files_import(helper.cfg.src + data[i],struct);
+                this.create_files_import(helper.cfg.src + relative + data[i],struct);
             }
             return ret;
         },
@@ -116,7 +141,7 @@ var helper = {
                 }
                 var structs = data.struct;
                 for(var i=0;i<structs.length;i++){
-                    ret[structs[i].$.name] = "{0}.{1}".Format(namespace,structs[i].$.name);
+                    ret[structs[i].$.name] = "{0}.Structs.{1}".Format(namespace,structs[i].$.name);
                 }
             });
         },
@@ -169,6 +194,7 @@ var helper = {
                     idKeys[info.$.name] = startId;
                 }
             }
+
             var str = "\n";
             str += "Core.$AlwaysDefines('{0}',{1})".Format(cfg.namespace,JSON.stringify(ret, null, 2));
             str = str.replaceAll("\"","");
@@ -178,3 +204,11 @@ var helper = {
 }
 
 helper.start();
+
+//var str = "123{[common/rpc_adf.xml]}456{[common/rpc_adf.xml]}4456";
+//var d = "common/rpc_adf.xml";
+//var lstr = "{\\[{0}]\\}".Format(d);
+//var re = new RegExp(lstr)
+//var lb = str.replaceAll(lstr,"----")
+//console.log(lstr )
+//console.log(lb )

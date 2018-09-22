@@ -11,33 +11,37 @@ Class({
         self.server.listen(this.port);
         //服务器监听事件
         self.server.on('listening',function(){
-            console.info("CTcpServer listening:" + self.server.address().port);
+            console.log("CTcpServer listening:" + self.server.address().port);
         });
 
         //服务器错误事件
         self.server.on("error",function(exception){
-            console.info("CTcpServer error:" + exception);
+            console.error("CTcpServer error:" + exception);
         });
     },
     onNewClient:function(client){
-        console.log('CTcpServer new client: ' + client.remoteAddress + ':' + client.remotePort);
+        var self = this;
+        console.info('CTcpServer new client: ' + client.remoteAddress + ':' + client.remotePort);
         client.setEncoding('binary');
         //接收到数据
         client.on('data',function(data){
-            console.log('CTcpServer client received:' + data);client.destroy();
+            if(this.isFrontServer){
+                App.Lib.Protocol.CFrontProtoSystem.Instance.onMessage(new Buffer(data),client);
+            }else{
+                App.Lib.Protocol.CRpcProtoSystem.Instance.onMessage(new Buffer(data),client);
+            }
         });
         // client.pipe(client);
         //数据错误事件
         client.on('error',function(exception){
-            console.log('CTcpServer client error:' + exception);
-
+            console.error('CTcpServer client error:' + exception);
         });
         //客户端关闭事件
         client.on('close',function(data){
             console.log('CTcpServer client closed! ' + JSON.stringify(data));
             // client.remoteAddress + ' ' + client.remotePort);
         });
-        App.Lib.Server.CAppServerSystem.Instance.newClient(
+        App.Lib.Net.CNetServerSystem.Instance.newClient(
             client,client.remoteAddress,client.remotePort);
     },
     removeClient:function(client){

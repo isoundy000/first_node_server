@@ -2,7 +2,7 @@
  * Created by Administrator on 2018/9/13.
  */
 Class({
-    ClassName: "App.Lib.Net.CNetSystem",
+    ClassName: "App.Lib.Net.CNetServerSystem",
     Base:"App.Lib.CBaseSystem",
     frontServer:null,
     backServer:null,
@@ -14,12 +14,12 @@ Class({
         this.cfg = cfg;
     },
     start:function(){
-        console.warn("port is:"+this.cfg.port);
         this.backServer = App.Lib.Net.CBaseNetServer.create(
-            this.cfg.type,this.cfg.host,this.cfg.port);
+            this.cfg.type,this.cfg.host,this.cfg.port,false);
         if(null!=this.cfg.front_type && null!=this.cfg.front_host){
             this.frontServer = App.Lib.Net.CBaseNetServer.create(
-                this.cfg.front_type,this.cfg.front_host,this.cfg.front_port);
+                this.cfg.front_type,this.cfg.front_host,this.cfg.front_port,true);
+            console.info("{0}_server front_port:{1}".Format(App.System.name,this.cfg.front_port))
         }
     },
     stop:function(){

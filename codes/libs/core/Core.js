@@ -150,7 +150,6 @@ module = module || {};
             // don't run the init constructor)
             var prototype = Object.create(_super);
 
-
             var classId = Core.NewClassId();
             Core.ClassManager[classId] = _super;
             // Copy the properties over onto the new prototype. We make function
@@ -314,10 +313,8 @@ module = module || {};
                         value:oldStaticPro
                     })
                 }
-
                 return Class;
             }
-
 
             for(var key in oldContructor)
             {
@@ -326,12 +323,8 @@ module = module || {};
                     Class[key] = oldContructor[key];
                 }
             }
-
-
             return Class;
         };
-
-
     }
 
     tempBaseClass = tempBaseClass.extend({
@@ -353,8 +346,6 @@ module = module || {};
             return this.__instance;
         }
     }
-
-
 
     global.Class = function(b)
     {

@@ -3,9 +3,16 @@
  */
 Class({
     ClassName: "App.Lib.Rpc.CRpcData",
-    ctor: function () {
-
+    netClient:null,
+    ctor: function (cfg,pro) {
+       this.netClient = App.Lib.Net.CNetClientSystem.Instance.newClient(
+           cfg.type,cfg.host,cfg.port,
+           this.onConnect.bind(this));
+    },
+    onConnect:function(){
+        console.log("CRpcData onConnect")
+    },
+    send:function(data){
+        this.netClient.send(data) ;
     }
-}).Static({
-    Instance: Core.Instance
 })

@@ -4,17 +4,12 @@
         <language
                 lang="javascript"
                 namespace="App.Pb.Session"
-                path="codes/protocol/CPbSessionStruct.js"/>
+                path="codes/protocol/front/CPbSessionStruct.js"/>
     </languages>
-
-    <header>./protocol/CPbSessionStruct</header>
 
     <!-- required repeated optional -->
     <struct name="C2SConnectRequest">
         <required name="token" type="string"/>
-        <required name="token2" type="string"/>
-        <optional name="token3" type="string"/>
-        <repeated name="token4" type="string"/>
     </struct>
 
     <struct name="S2CConnectResponse">

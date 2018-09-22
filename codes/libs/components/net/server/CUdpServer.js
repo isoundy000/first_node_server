@@ -10,15 +10,19 @@ Class({
         self.server = net.createSocket('udp4');
         self.server.bind(this.port);
         // on message
-        self.server.on('message', function(msg, rinfo){
-            console.log("CUdpServer msg:{0},{1}".Format(JSON.stringify(msg),JSON.stringify(rinfo)))
+        self.server.on('message', function(data, client){
+            if(this.isFrontServer){
+                App.Lib.Protocol.CFrontProtoSystem.Instance.onMessage(new Buffer(data),client);
+            }else{
+                App.Lib.Protocol.CRpcProtoSystem.Instance.onMessage(new Buffer(data),client);
+            }
         });
         self.server.on('error', function(err){
-            console.info('CUdpServer: msg - %s, stack - %s\n', err.message, err.stack);
+            console.error('CUdpServer: msg - %s, stack - %s\n', err.message, err.stack);
         });
 
         self.server.on('listening', function(){
-            console.info("CUdpServer: is listening on port:"+self.port);
+            console.log("CUdpServer: is listening on port:"+self.port);
         })
     },
     stop:function(){

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<protocol>
+    <languages>
+        <language
+                lang="javascript"
+                namespace="App.Server.Fight.CHandler"
+                path="codes/servers/fight/handler/CHandler.js" />
+    </languages>
+
+    <import>front_session_data.xml</import>
+
+    <item name="C2S_Bse_Msg_Start" value="1"/>
+    <item name="token" struct="front_session_data.C2SConnectRequest" value="C2S_Bse_Msg_Start"/>
+    <item name="token2" struct=""/>
+    <item name="C2S_Bse_Msg_Start" value="100"/>
+
+</protocol>

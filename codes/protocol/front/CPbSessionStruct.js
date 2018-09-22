@@ -1,4 +1,4 @@
-require('../libs/CAppSystem');
+require('../../libs/CAppSystem');
 
 App.Pb = App.Pb || {};
 App.Pb.Session = {}
@@ -13,24 +13,6 @@ App.Pb.Session.Structs = App.System.protobuf.newBuilder({})['import']({
           "type": "string",
           "name": "token",
           "id": 1
-        },
-        {
-          "rule": "required",
-          "type": "string",
-          "name": "token2",
-          "id": 2
-        },
-        {
-          "rule": "repeated",
-          "type": "string",
-          "name": "token4",
-          "id": 3
-        },
-        {
-          "rule": "optional",
-          "type": "string",
-          "name": "token3",
-          "id": 4
         }
       ]
     },

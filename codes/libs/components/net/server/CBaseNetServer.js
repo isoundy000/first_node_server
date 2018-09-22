@@ -6,9 +6,11 @@ Class({
     port:null,
     host:null,
     server:null,
-    ctor:function(host,port){
+    isFrontServer:null,
+    ctor:function(host,port,isFrontServer){
         this.port = port;
         this.host = host;
+        this.isFrontServer = isFrontServer;
         this.initSocket();
     },
     initSocket:function(){
@@ -18,11 +20,11 @@ Class({
 
     }
 }).Static({
-    create:function(type,host,port) {
+    create:function(type,host,port,isFrontServer) {
         if("udp" == type){
-            return new App.Lib.Net.CUdpServer(host,port);
+            return new App.Lib.Net.CUdpServer(host,port,isFrontServer);
         }else if(void 0 == type || "" == type ||  "tcp" == type){
-            return new App.Lib.Net.CTcpServer(host,port);
+            return new App.Lib.Net.CTcpServer(host,port,isFrontServer);
         }
     }
 })

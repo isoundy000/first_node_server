@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<protocol>
+    <languages>
+        <language
+                lang="javascript"
+                namespace="App.Pb.Rpc"
+                path="codes/protocol/rpc/CPrcStruct.js"/>
+    </languages>
+
+    <!-- required repeated optional -->
+    <struct name="S2SAuthen">
+        <required name="token" type="string"/>
+    </struct>
+    <struct name="S2SAuthenResponse">
+        <required name="ret" type="int32"/>
+    </struct>
+</protocol>

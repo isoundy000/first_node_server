@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<protocol>
+    <languages>
+        <language
+                lang="javascript"
+                namespace="App.Rpc.CHandler"
+                path="codes/protocol/rpc/CHandler.js" />
+    </languages>
+
+    <import>rpc_data.xml</import>
+
+    {[common/rpc_common_msg.xml]}
+    <item name="S2S_Fight_Start" value="1"/>
+        <item name="fightToken" struct="rpc_data.S2SAuthen" value="S2S_Fight_Start"/>
+        <item name="fightToken2" struct=""/>
+    <item name="S2S_Fight_End" value="100"/>
+
+    <item name="S2S_Session_Start" value="101"/>
+        <item name="sessionToken" struct="rpc_data.S2SAuthen" value="S2S_Session_Start"/>
+        <item name="sessionToken2" struct=""/>
+    <item name="S2S_Session_End" value="200"/>
+
+</protocol>

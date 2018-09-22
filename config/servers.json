@@ -1,4 +1,9 @@
 {
-  "session":[{"host":"127.0.0.1","port":3000,"type":"udp","front_host":"127.0.0.1","front_port":"3001","front_type":"tcp"}],
-  "fight":[{"host":"127.0.0.1","port":4000}]
+  "Session":[
+    {"host":"127.0.0.1","port":3000,"type":"udp","front_host":"127.0.0.1","front_port":3011,"front_type":"tcp"},
+    {"host":"127.0.0.1","port":3002,"type":"udp","front_host":"127.0.0.1","front_port":3012,"front_type":"tcp"},
+    {"host":"127.0.0.1","port":3003,"type":"udp","front_host":"127.0.0.1","front_port":3013,"front_type":"tcp"},
+    {"host":"127.0.0.1","port":3004,"type":"udp","front_host":"127.0.0.1","front_port":3014 ,"front_type":"tcp"}
+  ],
+  "Fight":[{"host":"127.0.0.1","port":4000,"type":"udp"}]
 }
