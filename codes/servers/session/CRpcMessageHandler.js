@@ -4,12 +4,14 @@
 Class({
     ClassName:"App.Server.CRpcMessageHandler",
     bind:function(){
-        App.Lib.Protocol.CRpcProtoSystem.Instance.addmap("sessionToken",this.sessionToken,this);
+        App.Lib.Protocol.CRpcProtoSystem.Instance.bind("sessionToken",this.sessionToken);
     },
     sessionToken:function(msg,client) {
-        console.warn("sessionToken:"+JSON.stringify(msg));
-        App.Lib.Rpc.CRpcSystem.Instance.send("Fight","fightToken",{"token":"456"});
+        // console.warn("App.Server.CRpcMessageHandler sessionToken:"+JSON.stringify(msg));
+        // App.Lib.Rpc.CRpcSystem.Instance.send(null,"Fight","fightToken",{"token":"456"});
+        return null;
     }
+
 }).Static({
     Instance:Core.Instance
 })

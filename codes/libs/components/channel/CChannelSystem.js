@@ -31,7 +31,7 @@ Class({
             throw "App.Lib.Channel.CChannelSystem not have channel:"+channelName;
             return;
         }
-        var channel = this.channels[name];
+        let channel = this.channels[name];
         delete this.channels[name];
         channel.sessions.RemoveAll(true);
     },
@@ -40,7 +40,7 @@ Class({
         channel.sessions.InsertValue(agentData.id,agentData);
     },
     removeAgent:function(channelName,agentData){
-        var channel = this.channels[name];
+        let channel = this.channels[name];
         if(!channel){
             throw "App.Lib.Channel.CChannelSystem not have channel:"+channelName;
             return;

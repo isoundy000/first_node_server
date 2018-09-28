@@ -181,6 +181,9 @@ var helper = {
                             id:startId,
                             struct:cs[struct[1]]
                         }
+                        if(info.$.callback){
+                            ret[name].cb = "'"+info.$.callback+"'";
+                        }
                     }else{
                         ret[name] = {
                             id:startId

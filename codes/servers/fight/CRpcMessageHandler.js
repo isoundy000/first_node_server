@@ -4,10 +4,10 @@
 Class({
     ClassName:"App.Server.CRpcMessageHandler",
     bind:function(){
-        App.Lib.Protocol.CRpcProtoSystem.Instance.addmap("fightToken",this.fightToken,this);
+        App.Lib.Protocol.CRpcProtoSystem.Instance.bind("fightToken",this.fightToken);
     },
     fightToken:function(msg,client) {
-        console.warn("fightToken:"+JSON.stringify(msg));
+        // console.warn("App.Server.CRpcMessageHandler fightToken:"+JSON.stringify(msg));
     }
 }).Static({
     Instance:Core.Instance

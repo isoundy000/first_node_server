@@ -4,10 +4,10 @@
 Class({
     ClassName:"App.Server.CFrontMessageHandler",
     bind:function(){
-        App.Lib.Protocol.CFrontProtoSystem.Instance.addmap("token",this.token,this);
+        App.Lib.Protocol.CFrontProtoSystem.Instance.bind("token",this.token,this);
     },
     token:function(msg,client) {
-        console.warn(JSON.stringify(msg));
+        console.warn("App.Server.CFrontMessageHandler token:"+JSON.stringify(msg));
     }
 }).Static({
     Instance:Core.Instance

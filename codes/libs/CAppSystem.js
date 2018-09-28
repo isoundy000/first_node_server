@@ -28,6 +28,7 @@ require("./components/net/client/CTcpClient");
 require("./components/net/client/CUdpClient");
 require("./components/net/client/CNetClientSystem");
 
+require("./components/server/CMonitorClientSystem");
 require("./components/server/CBaseServer");
 
 require("./components/protocol/CBaseProtoSystem");
@@ -89,10 +90,13 @@ App.System = {
         App.Lib.Session.CSessionSystem.Instance.stop();
     },
     config:function(name,index,cfg){
-        this.serverIndex = index;
+        this.serverIndex = parseInt(index);
         this.name = name;
         var cuurentCfg = cfg[name][index];
         App.Lib.Net.CNetServerSystem.Instance.config(cuurentCfg);
         App.Lib.Rpc.CRpcSystem.Instance.config(cfg);
+    },
+    allServerStart:function () {
+
     }
 }

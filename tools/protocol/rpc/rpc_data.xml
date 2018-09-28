@@ -7,6 +7,10 @@
                 path="codes/protocol/rpc/CPrcStruct.js"/>
     </languages>
 
+    <struct name="S2SServerStart">
+        <required name="name" type="string"/>
+        <required name="num" type="int32"/>
+    </struct>
     <!-- required repeated optional -->
     <struct name="S2SAuthen">
         <required name="token" type="string"/>

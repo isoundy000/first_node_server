@@ -3,15 +3,20 @@
  */
 Class({
     ClassName: "App.Lib.Server.CBaseServer",
-    beforStart:function(){
+    beforStart:function(name,index,serverCfg){
     },
     afterStart:function(){
+        App.System.allServerStart();
     },
     start:function(name,index,serverCfg){
-        this.beforStart();
+        this.beforStart(name,index,serverCfg);
         App.System.init();
         App.System.config(name,index,serverCfg);
         App.System.start();
+        if(name!="Monitor"){
+            App.Lib.Server.CMonitorClientSystem.Instance.init();
+            App.Lib.Server.CMonitorClientSystem.Instance.start();
+        }
         this.afterStart();
     }
 })

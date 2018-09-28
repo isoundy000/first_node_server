@@ -16,8 +16,12 @@ Class({
     },
     start:function(){
     },
-    onMessage:function(msg, rinfo){
-        console.log('recv %s(%d) from server\n', msg, msg.length);
+    onMessage:function(data, client){
+        if(this.isFrontServer){
+            App.Lib.Protocol.CFrontProtoSystem.Instance.onMessage(new Buffer(data),client);
+        }else{
+            App.Lib.Protocol.CRpcProtoSystem.Instance.onMessage(new Buffer(data),client);
+        }
     },
     send:function(data){
         if(null!=this.scoket){

@@ -1,1 +1,2 @@
-<item name="Authen" struct="rpc_data.S2SAuthen" value="0"/>
+<item name="authen" struct="rpc_data.S2SAuthen"  callback="authenResponse"/>
+<item name="authenResponse" struct="rpc_data.S2SAuthen" />

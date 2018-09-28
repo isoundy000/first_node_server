@@ -9,12 +9,12 @@ Class({
         var self = this;
         self.server = net.createServer(self.onNewClient.bind(self));
         self.server.listen(this.port);
-        //·þÎñÆ÷¼àÌýÊÂ¼þ
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½
         self.server.on('listening',function(){
             console.log("CTcpServer listening:" + self.server.address().port);
         });
 
-        //·þÎñÆ÷´íÎóÊÂ¼þ
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½
         self.server.on("error",function(exception){
             console.error("CTcpServer error:" + exception);
         });
@@ -23,7 +23,7 @@ Class({
         var self = this;
         console.info('CTcpServer new client: ' + client.remoteAddress + ':' + client.remotePort);
         client.setEncoding('binary');
-        //½ÓÊÕµ½Êý¾Ý
+        //
         client.on('data',function(data){
             if(this.isFrontServer){
                 App.Lib.Protocol.CFrontProtoSystem.Instance.onMessage(new Buffer(data),client);
@@ -32,11 +32,11 @@ Class({
             }
         });
         // client.pipe(client);
-        //Êý¾Ý´íÎóÊÂ¼þ
+        //
         client.on('error',function(exception){
             console.error('CTcpServer client error:' + exception);
         });
-        //¿Í»§¶Ë¹Ø±ÕÊÂ¼þ
+        //
         client.on('close',function(data){
             console.log('CTcpServer client closed! ' + JSON.stringify(data));
             // client.remoteAddress + ' ' + client.remotePort);

@@ -1,21 +1,35 @@
 
 Core.$AlwaysDefines('App.Rpc.CHandler',{
-  Authen: {
+  serverStart: {
     id: 0,
+    struct: App.Pb.Rpc.Structs.S2SServerStart
+  },
+  allServertart: {
+    id: 1
+  },
+  authen: {
+    id: 2,
+    struct: App.Pb.Rpc.Structs.S2SAuthen,
+    cb: 'authenResponse'
+  },
+  authenResponse: {
+    id: 3,
     struct: App.Pb.Rpc.Structs.S2SAuthen
   },
   fightToken: {
-    id: 1,
-    struct: App.Pb.Rpc.Structs.S2SAuthen
+    id: 100,
+    struct: App.Pb.Rpc.Structs.S2SAuthen,
+    cb: 'fightTokenResponse'
   },
-  fightToken2: {
-    id: 2
+  fightTokenResponse: {
+    id: 101
   },
   sessionToken: {
-    id: 101,
-    struct: App.Pb.Rpc.Structs.S2SAuthen
+    id: 201,
+    struct: App.Pb.Rpc.Structs.S2SAuthen,
+    cb: 'sessionTokenesponse'
   },
-  sessionToken2: {
-    id: 102
+  sessionTokenesponse: {
+    id: 202
   }
 })

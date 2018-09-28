@@ -6,6 +6,23 @@ App.Pb.Rpc.Structs = App.System.protobuf.newBuilder({})['import']({
   "package": "proto",
   "messages": [
     {
+      "name": "S2SServerStart",
+      "fields": [
+        {
+          "rule": "required",
+          "type": "string",
+          "name": "name",
+          "id": 1
+        },
+        {
+          "rule": "required",
+          "type": "int32",
+          "name": "num",
+          "id": 2
+        }
+      ]
+    },
+    {
       "name": "S2SAuthen",
       "fields": [
         {
