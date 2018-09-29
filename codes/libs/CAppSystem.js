@@ -28,8 +28,8 @@ require("./components/net/client/CTcpClient");
 require("./components/net/client/CUdpClient");
 require("./components/net/client/CNetClientSystem");
 
-require("./components/server/CMonitorClientSystem");
-require("./components/server/CBaseServer");
+require("./components/server/base/CMonitorClientSystem");
+require("./components/server/base/CBaseServer");
 
 require("./components/protocol/CBaseProtoSystem");
 require("./components/protocol/CFrontProtoSystem");

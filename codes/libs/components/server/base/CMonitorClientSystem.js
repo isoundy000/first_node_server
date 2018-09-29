@@ -9,10 +9,10 @@ Class({
             clearInterval(this.startCheckInterval);
             this.startCheckInterval = null;
         }
-        this.startCheckInterval = setInterval(function () {
-            let clientData = {"name":App.System.name,num:App.System.serverIndex};
-            App.Lib.Rpc.CRpcSystem.Instance.send(null,"Monitor","serverStart",clientData);
-        },1000)
+        //this.startCheckInterval = setInterval(function () {
+        //    let clientData = {"name":App.System.name,num:App.System.serverIndex};
+        //    App.Lib.Rpc.CRpcSystem.Instance.send(null,"Monitor","serverStart",clientData);
+        //},1000)
     },
     serverStart:function () {
         if(null != this.startCheckInterval){

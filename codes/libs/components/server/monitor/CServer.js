@@ -1,8 +1,8 @@
 /**
  * Created by Administrator on 2018/9/20.
  */
-require("../../libs/CAppSystem");
-require("../../protocol/front/CPbSessionStruct");
+require("../../../CAppSystem");
+require("../../../../protocol/front/CPbSessionStruct");
 require("./CRpcMessageHandler");
 require("./CMonitorData");
 require("./CMonitorServerSystem");
