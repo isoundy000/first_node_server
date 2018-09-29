@@ -32,8 +32,11 @@ Class({
             this.frontServer = null;
         }
     },
-    newClient:function(server,host,port) {
-        App.Lib.Session.CSessionSystem.Instance.addSession(server,host,port);
+    newClient:function(client,host,port,isFront) {
+        App.Lib.Session.CSessionSystem.Instance.addSession(client,host,port,isFront);
+    },
+    removeClient:function (client,host,port) {
+        App.Lib.Session.CSessionSystem.Instance.removeSession(client,host,port);
     }
 }).Static({
     Instance: Core.Instance

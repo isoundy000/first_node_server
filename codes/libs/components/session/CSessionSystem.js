@@ -4,24 +4,43 @@
 Class({
     ClassName: "App.Lib.Session.CSessionSystem",
     Base:"App.Lib.CBaseSystem",
-    sessions:null,
+    frontSessions:null,
+    backSession:null,
+    nextId:0,
     init: function () {
-        this.sessions = {};
+        this.frontSessions = {};
+        this.backSession = {};
+        this.nextId = 0;
     },
     clear:function() {
-        this.sessions = {};
+        this.frontSessions = {};
+        this.backSession = {};
+        this.nextId = 0;
     },
-    addSession: function (server,socket,host,port) {
-        var id = "{0}_{1}".Format(host,port);
-        var session = new App.Lib.Session.CSessionData(id,socket,server,host,port);
-        this.sessions[id] = session;
-    },
-    removeSession:function(id,initiative){
-        if(this.sessions.hasOwnProperty(id)){
-            var session = this.sessions[id];
-
-            delete this.sessions[id];
+    addSession: function (client,host,port,isFront) {
+        let id = this.nextId++;
+        let session = new App.Lib.Session.CSessionData(id,client,host,port,isFront);
+        client.session= session;
+        if(isFront){
+            this.frontSessions[id] = session;
+        }else{
+            this.backSession[id] = session;
         }
+    },
+    removeSession:function(client,host,port){
+        let id = client.session.id;
+        if(client.isFront){
+            if(this.frontSessions.hasOwnProperty(id)){
+                let session = this.frontSessions[id];
+                delete this.frontSessions[id];
+            }
+        }else{
+            if(this.backSession.hasOwnProperty(id)){
+                let session = this.backSession[id];
+                delete this.backSession[id];
+            }
+        }
+
     }
 }).Static({
     Instance: Core.Instance

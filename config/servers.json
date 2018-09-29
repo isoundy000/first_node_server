@@ -1,5 +1,4 @@
 {
-  "Monitor":[{"host":"127.0.0.1","port":3050,"type":"udp","front_host":"127.0.0.1","front_port":3051,"front_type":"tcp"}],
   "Session":[
     {"host":"127.0.0.1","port":3000,"type":"tcp","front_host":"127.0.0.1","front_port":3011,"front_type":"tcp"},
     {"host":"127.0.0.1","port":3002,"type":"tcp","front_host":"127.0.0.1","front_port":3012,"front_type":"tcp"},

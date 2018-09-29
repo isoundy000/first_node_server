@@ -6,7 +6,7 @@ Class({
     bind:function(){
         App.Lib.Protocol.CRpcProtoSystem.Instance.bind("serverStart",this.serverStart);
     },
-    serverStart:function(msg,client) {
+    serverStart:function(msg,session) {
         App.Server.CMonitorServerSystem.Instance.onServerStart(msg.name,msg.num);
     }
 }).Static({

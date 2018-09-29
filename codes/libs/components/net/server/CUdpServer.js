@@ -13,10 +13,10 @@ Class({
         self.server.on('message', function(data, client){
             client.send = self.send;
             client.server = self.server;
-            if(this.isFrontServer){
-                App.Lib.Protocol.CFrontProtoSystem.Instance.onMessage(new Buffer(data),client);
+            if(self.isFrontServer){
+                App.Lib.Protocol.CFrontProtoSystem.Instance.onMessage(new Buffer(data),client.session);
             }else{
-                App.Lib.Protocol.CRpcProtoSystem.Instance.onMessage(new Buffer(data),client);
+                App.Lib.Protocol.CRpcProtoSystem.Instance.onMessage(new Buffer(data),client.session);
             }
         });
         self.server.on('error', function(err){

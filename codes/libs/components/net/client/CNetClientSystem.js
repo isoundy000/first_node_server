@@ -21,7 +21,7 @@ Class({
         }
     },
     newClient:function(serverType,host,port,connectCb,closeCb) {
-        var client = App.Lib.Net.CBaseNetClient.create(serverType,host,port,connectCb,closeCb);
+        let client = App.Lib.Net.CBaseNetClient.create(serverType,host,port,connectCb,closeCb);
         this.clients.push(client);
         return client;
     }

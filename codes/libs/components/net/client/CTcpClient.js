@@ -42,7 +42,7 @@ Class({
         this.reconnect();
     },
     onError:function(){
-        console.log("client onError")
+        console.log("{0}:App.Lib.Net.CTcpClient client onError".Format(App.System.name))
     },
     send:function(data){
         if(null != this.socket){

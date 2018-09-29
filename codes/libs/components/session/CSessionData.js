@@ -3,15 +3,16 @@
  */
 Class({
     ClassName: "App.Lib.Session.CSessionData",
-    server:null,
+    client:null,
     host:null,
     port:null,
-    agent:null,
     id:null,
-    ctor:function(id,server,host,port){
+    isFront:false,
+    ctor:function(id,client,host,port,isFront){
         this.id = id;
-        this.server = server;
+        this.client = client;
         this.host = host;
         this.port = port;
+        this.isFront = isFront;
     }
 })

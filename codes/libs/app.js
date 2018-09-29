@@ -2,13 +2,15 @@
  * Created by user on 2018/9/29.
  */
 require("./CAppSystem");
-let serverCfg = require("../../config/servers");
 const child_process = require('child_process');
 
 (function(){
     //
+    let serverCfg = require("../../config/servers");
     let serverName = "Monitor";
-    let monitor = serverCfg[serverName][0];
+    let monitorCfg = require("../../config/monitor");
+    serverCfg[serverName] = [monitorCfg];
+
     let file = "./libs/components/server/monitor/CServer.js";
     let worker_process = child_process.fork(file, [serverName,0,JSON.stringify(serverCfg)]);
     worker_process.on('close', function (code) {

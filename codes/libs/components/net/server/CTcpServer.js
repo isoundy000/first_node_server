@@ -6,32 +6,31 @@ Class({
     ClassName: "App.Lib.Net.CTcpServer",
     Base:"App.Lib.Net.CBaseNetServer",
     initSocket:function(){
-        var self = this;
+        let self = this;
         self.server = net.createServer(self.onNewClient.bind(self));
         self.server.listen(this.port);
-        //�����������¼�
+        //
         self.server.on('listening',function(){
             console.log("CTcpServer listening:" + self.server.address().port);
         });
 
-        //�����������¼�
+        //
         self.server.on("error",function(exception){
             console.error("CTcpServer error:" + exception);
         });
     },
     onNewClient:function(client){
-        var self = this;
+        let self = this;
         console.info('CTcpServer new client: ' + client.remoteAddress + ':' + client.remotePort);
         client.setEncoding('binary');
         //
         client.on('data',function(data){
-            if(this.isFrontServer){
-                App.Lib.Protocol.CFrontProtoSystem.Instance.onMessage(new Buffer(data),client);
+            if(self.isFrontServer){
+                App.Lib.Protocol.CFrontProtoSystem.Instance.onMessage(new Buffer(data),client.session);
             }else{
-                App.Lib.Protocol.CRpcProtoSystem.Instance.onMessage(new Buffer(data),client);
+                App.Lib.Protocol.CRpcProtoSystem.Instance.onMessage(new Buffer(data),client.session);
             }
         });
-        // client.pipe(client);
         //
         client.on('error',function(exception){
             console.error('CTcpServer client error:' + exception);
@@ -39,10 +38,11 @@ Class({
         //
         client.on('close',function(data){
             console.log('CTcpServer client closed! ' + JSON.stringify(data));
-            // client.remoteAddress + ' ' + client.remotePort);
+            App.Lib.Net.CNetServerSystem.Instance.removeClient(
+                client,client.remoteAddress,client.remotePort);
         });
         App.Lib.Net.CNetServerSystem.Instance.newClient(
-            client,client.remoteAddress,client.remotePort);
+            client,client.remoteAddress,client.remotePort,self.isFrontServer);
     },
     removeClient:function(client){
         client.destroy();
