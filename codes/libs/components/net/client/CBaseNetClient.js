@@ -14,6 +14,7 @@ Class({
         this.connectCallBack = connectCb;
         this.closeCallBack = closeCb;
         this.initSocket();
+        console.log("{0}-{1} App.Lib.Net.CBaseNetClient:rpc socket create".Format(App.System.name,this.serverPort))
     },
     initSocket:function(){
 

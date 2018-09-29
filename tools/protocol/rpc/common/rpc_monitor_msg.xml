@@ -1,2 +1,2 @@
 <item name="serverStart" struct="rpc_data.S2SServerStart" />
-<item name="allServertart" struct="" />
+<item name="allServerStart" struct="" />

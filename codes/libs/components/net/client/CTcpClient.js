@@ -11,36 +11,44 @@ Class({
         this.socket = tcpClient;
     },
     stop:function(){
-        this.socket.close();
+        var socket = this.socket;
         this.socket = null;
+        if(null!=socket){
+            socket.close();
+        }
     },
     start:function(){
-        console.warn("CTcpClient to connect")
-        this.socket.connect(this.serverPort, this.serverHost, this.onConnect.bind(this));
         this.socket.on('data', this.onMessage.bind(this));
         this.socket.on('close',this.onClose.bind(this) );
         this.socket.on('error',this.onError.bind(this) );
+        this.reconnect();
+    },
+    reconnect:function(){
+        if(null == this.socket ){
+            return;
+        }
+        this.socket.connect(this.serverPort, this.serverHost, this.onConnect.bind(this));
     },
     onConnect:function(){
-        console.warn("CTcpClient onConnect")
         if(null != this.connectCallBack){
             this.connectCallBack();
         }
+        console.log("{0}-{1} App.Lib.Net.CTcpClient:rpc socket onConnect".Format(App.System.name,this.serverPort))
     },
     onMessage:function(data){
         console.log('recv %s(%d) from server\n', msg, msg.length);
     },
     onClose:function(){
-        console.log("client close")
+        this.reconnect();
     },
     onError:function(){
         console.log("client onError")
     },
     send:function(data){
-        if(null!=this.scoket){
+        if(null != this.socket){
             this.socket.write(data);
         }else{
-            console.error("App.Lib.Net.CTcpClient:send socket is null")
+            console.error("{0}-{1} App.Lib.Net.CTcpClient:send socket is null".Format(App.System.name,this.serverPort))
         }
     }
 })

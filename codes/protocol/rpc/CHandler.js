@@ -4,7 +4,7 @@ Core.$AlwaysDefines('App.Rpc.CHandler',{
     id: 0,
     struct: App.Pb.Rpc.Structs.S2SServerStart
   },
-  allServertart: {
+  allServerStart: {
     id: 1
   },
   authen: {

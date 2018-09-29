@@ -41,7 +41,7 @@ Class({
         for(let serverName in this.servers){
             let ay = this.servers[serverName];
             for(let i=0;i<ay.length;i++){
-                App.Lib.Rpc.CRpcSystem.Instance.send(i,serverName,"allServertart");
+                App.Lib.Rpc.CRpcSystem.Instance.send(i,serverName,"allServerStart");
             }
         }
     }
