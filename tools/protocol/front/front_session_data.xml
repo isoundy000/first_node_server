@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <protocol>
     <languages>
-        <language
-                lang="javascript"
-                namespace="App.Pb.Session"
-                path="codes/protocol/front/CPbSessionStruct.js"/>
+        <client>
+            <language
+                    lang="javascript"
+                    namespace="Bitch.PB"
+                    path="CPBStruct.js"/>
+        </client>
+        <server>
+            <language
+                    lang="javascript"
+                    namespace="App.Pb.Session"
+                    path="codes/protocol/front/CPbSessionStruct.js"/>
+        </server>
     </languages>
 
     <!-- required repeated optional -->

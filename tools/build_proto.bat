@@ -1,0 +1,1 @@
+node build_server_protocol.js && node build_client_protocol.js

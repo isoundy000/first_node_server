@@ -1,1 +1,0 @@
-cd ../tools/ && node build_protocol.js

@@ -1,17 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <protocol>
     <languages>
-        <language
-                lang="javascript"
-                namespace="App.Server.Session.CHandler"
-                path="codes/servers/session/handler/CHandler.js" />
+        <client>
+            <language
+                    lang="javascript"
+                    namespace="Bitch.PB"
+                    flag="session"/>
+        </client>
+        <server>
+            <language
+                    lang="javascript"
+                    namespace="App.Server.Session.CHandler"
+                    path="codes/servers/session/handler/CHandler.js" />
+        </server>
     </languages>
 
     <import>front_session_data.xml</import>
 
-    <item name="C2S_Bse_Msg_Start" value="1"/>
-        <item name="token" struct="front_session_data.C2SConnectRequest" value="C2S_Bse_Msg_Start"/>
-    <item name="token2" struct=""/>
-    <item name="C2S_Bse_Msg_Start" value="100"/>
+    <item name="C2S_Bse_Msg_Start" value="101"/>
+        <item name="token" struct="front_session_data.C2SConnectRequest" callback="tokenResponse" table="client" value="C2S_Bse_Msg_Start" />
+        <item name="tokenResponse" struct="front_session_data.C2SConnectRequest" table="server"/>
+        <item name="token2" struct="" callback="token2Response" table="client"/>
+        <item name="token2Response" struct="" table="server"/>
+    <item name="C2S_Bse_Msg_Start" value="200"/>
 
 </protocol>

@@ -1,3 +1,4 @@
 
 .idea/
-codes/libs/node_modules/
+server/codes/libs/node_modules/
+tools/node_modules

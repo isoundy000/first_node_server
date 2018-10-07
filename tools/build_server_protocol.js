@@ -3,12 +3,12 @@
  */
 var fs = require('fs');
 var xml2js = require('xml2js');
-require("../codes/libs/core/CBaseHelper");
+require("../server/codes/libs/core/CBaseHelper");
 
 var helper = {
     cfg:{
         src:"./protocol/",
-        des:"../"
+        des:"../server/"
     },
     start:function(){
         var tmp= "front/";
@@ -50,7 +50,11 @@ var helper = {
             var structs = data.struct;
             var items = data.item;
             for(var i=0;i<data.languages.length;i++){
-                var info = data.languages[i].language[0];
+                var scfg = data.languages[i];
+                if(scfg.server){
+                    scfg = scfg.server[0];
+                }
+                var info = scfg.language[0];
                 var language = info["_"];
                 var cfg = info["$"];
                 if(structs){
@@ -132,7 +136,12 @@ var helper = {
             var self = this;
             parser.parseString(content, function (err, result) {
                 var data = result.protocol;
-                var namespaces = data.languages[0].language;
+
+                var scfg = data.languages[0];
+                if(scfg.server){
+                    scfg = scfg.server[0];
+                }
+                var namespaces = scfg;
                 var namespace;
                 for(var i=0;i<namespaces.length;i++){
                     if(namespaces[i].$.lang == "javascript"){
