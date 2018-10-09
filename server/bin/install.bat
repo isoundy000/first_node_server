@@ -1,2 +1,1 @@
-cd ../codes/libs/ && npm install && \
-cd ../../tools/ && npm install
+cd ../codes/libs/ && npm install && cd ../../../tools/ && npm install

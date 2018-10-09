@@ -141,7 +141,7 @@ var helper = {
                 if(scfg.server){
                     scfg = scfg.server[0];
                 }
-                var namespaces = scfg;
+                var namespaces = scfg.language;
                 var namespace;
                 for(var i=0;i<namespaces.length;i++){
                     if(namespaces[i].$.lang == "javascript"){
