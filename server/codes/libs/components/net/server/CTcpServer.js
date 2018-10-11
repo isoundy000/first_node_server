@@ -22,13 +22,13 @@ Class({
     onNewClient:function(client){
         let self = this;
         console.info('CTcpServer new client: ' + client.remoteAddress + ':' + client.remotePort);
-        client.setEncoding('binary');
+        // client.setEncoding('binary');
         //
         client.on('data',function(data){
             if(self.isFrontServer){
-                App.Lib.Protocol.CFrontProtoSystem.Instance.onMessage(new Buffer(data),client.session);
+                App.Lib.Protocol.CFrontProtoSystem.Instance.onMessage(data,client.session);
             }else{
-                App.Lib.Protocol.CRpcProtoSystem.Instance.onMessage(new Buffer(data),client.session);
+                App.Lib.Protocol.CRpcProtoSystem.Instance.onMessage(data,client.session);
             }
         });
         //

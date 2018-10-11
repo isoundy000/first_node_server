@@ -7,7 +7,6 @@ Class({
     Base:"App.Lib.Net.CBaseNetClient",
     initSocket:function(){
         var tcpClient = net.Socket();
-        tcpClient.setEncoding('binary');
         this.socket = tcpClient;
     },
     stop:function(){
@@ -36,7 +35,9 @@ Class({
         console.log("{0}-{1} App.Lib.Net.CTcpClient:rpc socket onConnect".Format(App.System.name,this.serverPort))
     },
     onMessage:function(data){
-        console.log('recv %s(%d) from server\n', msg, msg.length);
+        if(!this.isFrontServer){
+            App.Lib.Protocol.CRpcProtoSystem.Instance.onMessage(data,this);
+        }
     },
     onClose:function(){
         this.reconnect();

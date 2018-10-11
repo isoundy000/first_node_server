@@ -14,9 +14,9 @@ Class({
             client.send = self.send;
             client.server = self.server;
             if(self.isFrontServer){
-                App.Lib.Protocol.CFrontProtoSystem.Instance.onMessage(new Buffer(data),client.session);
+                App.Lib.Protocol.CFrontProtoSystem.Instance.onMessage(data,client.session);
             }else{
-                App.Lib.Protocol.CRpcProtoSystem.Instance.onMessage(new Buffer(data),client.session);
+                App.Lib.Protocol.CRpcProtoSystem.Instance.onMessage(data,client.session);
             }
         });
         self.server.on('error', function(err){

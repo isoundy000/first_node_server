@@ -7,8 +7,7 @@ Class({
         App.Lib.Protocol.CRpcProtoSystem.Instance.bind("sessionToken",this.sessionToken);
     },
     sessionToken:function(msg,session) {
-        // console.warn("App.Server.CRpcMessageHandler sessionToken:"+JSON.stringify(msg));
-        // App.Lib.Rpc.CRpcSystem.Instance.send(null,"Fight","fightToken",{"token":"456"});
+        // App.Lib.Rpc.CRpcSystem.Instance.send(null,"Fight","sessionTokenesponse");
         return null;
     }
 

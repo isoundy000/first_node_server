@@ -18,9 +18,9 @@ Class({
     },
     onMessage:function(data, client){
         if(this.isFrontServer){
-            App.Lib.Protocol.CFrontProtoSystem.Instance.onMessage(new Buffer(data),client);
+            App.Lib.Protocol.CFrontProtoSystem.Instance.onMessage(data,client);
         }else{
-            App.Lib.Protocol.CRpcProtoSystem.Instance.onMessage(new Buffer(data),client);
+            App.Lib.Protocol.CRpcProtoSystem.Instance.onMessage(data,client);
         }
     },
     send:function(data){

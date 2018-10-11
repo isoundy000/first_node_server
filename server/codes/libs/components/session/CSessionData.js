@@ -14,5 +14,8 @@ Class({
         this.host = host;
         this.port = port;
         this.isFront = isFront;
+    },
+    send:function (data) {
+        this.client.write(data);
     }
 })

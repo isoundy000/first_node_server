@@ -19,7 +19,7 @@ Class({
             return null;
         }
     },
-    dispatchMsg:function(key,msg,client){
+    dispatchMsg:function(key,msg,session){
         if(!this.handlers.hasOwnProperty(key)){
             return;
         }
@@ -31,17 +31,17 @@ Class({
             if(void 0 != reqInfo.cb){
                 let responseInfo = self.messageCfg[reqInfo.cb];
                 backData = self.encode(responseInfo,backData);
-                client.send(backData);
+                session.send(backData);
             }
         })();
     },
-    onMessage:function(buff,client) {
+    onMessage:function(buff,session) {
         let id = buff[0]<<8 | buff[1];
         let  mBuff = buff.slice(2,buff.length);
         let info =this.messageCfg[id];
         let name = this.messageNameCfg[id];
         let msg = info.struct.decode(mBuff);
-        this.dispatchMsg(name,msg,client);
+        this.dispatchMsg(name,msg,session);
     },
     start:function(){
         if(null == App.Server[App.System.name]){
