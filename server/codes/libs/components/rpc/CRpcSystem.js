@@ -8,6 +8,8 @@ Class({
     servers:null,
     id:0,
     cbCaches:null,
+    bufferCache:null,
+    interval:null,
     init: function () {
         this.servers = {};
         this.cbCaches = {};
@@ -30,8 +32,6 @@ Class({
                 rpcDatas.push(rpcData);
             }
         }
-    },
-    start:function(){
     },
     send:function(){
         let opt,serverName,reqName,msg,cb;
@@ -77,10 +77,7 @@ Class({
         let id = self.id;
         return new Promise((resolve, reject) => {
             self.cbCaches[id] = function(data){
-                resolve();
-                if(ret){
-                    ret.value = data;
-                }
+                resolve(data);
             };
             let data = App.Lib.Protocol.CRpcProtoSystem.Instance.encode(id,reqInfo,msg);
             let client = self.servers[serverName][index];
@@ -95,6 +92,9 @@ Class({
         }else{
             console.warn("no have onCallBack:"+id);
         }
+    },
+    checkBuffer:function(){
+
     }
 }).Static({
     Instance: Core.Instance

@@ -13,8 +13,10 @@ Class({
     stop:function(){
         this.scoket.close();
         this.scoket = null;
+        App.Lib.Net.CBaseNetClient.prototype.stop.call(this);
     },
     start:function(){
+        App.Lib.Net.CBaseNetClient.prototype.start.call(this);
     },
     onMessage:function(data, client){
         if(this.isFrontServer){
@@ -23,9 +25,9 @@ Class({
             App.Lib.Protocol.CRpcProtoSystem.Instance.onMessage(data,client);
         }
     },
-    send:function(data){
+    doSend:function(data,length){
         if(null!=this.scoket){
-            this.scoket.send(data, 0, data.length, this.serverPort, this.serverHost);
+            this.scoket.send(data, 0, length, this.serverPort, this.serverHost);
         }else{
             console.error("App.Lib.Net.CUdpClient:send socket is null")
         }

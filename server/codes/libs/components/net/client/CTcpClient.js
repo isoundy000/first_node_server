@@ -15,12 +15,14 @@ Class({
         if(null!=socket){
             socket.close();
         }
+        App.Lib.Net.CBaseNetClient.prototype.stop.call(this);
     },
     start:function(){
         this.socket.on('data', this.onMessage.bind(this));
         this.socket.on('close',this.onClose.bind(this) );
         this.socket.on('error',this.onError.bind(this) );
         this.reconnect();
+        App.Lib.Net.CBaseNetClient.prototype.start.call(this);
     },
     reconnect:function(){
         if(null == this.socket ){
@@ -45,7 +47,7 @@ Class({
     onError:function(){
         console.log("{0}:App.Lib.Net.CTcpClient client onError".Format(App.System.name))
     },
-    send:function(data){
+    doSend:function (data,length) {
         if(null != this.socket){
             this.socket.write(data);
         }else{

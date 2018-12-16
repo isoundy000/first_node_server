@@ -25,11 +25,8 @@ Class({
         // client.setEncoding('binary');
         //
         client.on('data',function(data){
-            if(self.isFrontServer){
-                App.Lib.Protocol.CFrontProtoSystem.Instance.onMessage(data,client.session);
-            }else{
-                App.Lib.Protocol.CRpcProtoSystem.Instance.onMessage(data,client.session);
-            }
+            client.id = client.session.id;
+            self.onClientData(data,client);
         });
         //
         client.on('error',function(exception){

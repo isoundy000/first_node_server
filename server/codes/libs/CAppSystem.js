@@ -5,6 +5,7 @@ require("./core/Core");
 require("./core/CMapArray");
 require("./core/CBaseHelper");
 
+require("./components/CConfigMisc");
 require("./components/CBaseSystem");
 
 require("./components/session/CSessionData");
@@ -16,9 +17,17 @@ require("./components/agent/CAgentSystem");
 require("./components/channel/CChannelData");
 require("./components/channel/CChannelSystem");
 
+require("./components/filter/CBaseFilter");
+require("./components/filter/CDefultFilterKey");
+require("./components/filter/CFilterData");
+require("./components/filter/CValidLoginFilter");
+require("./components/filter/CValidServerFilter");
+
 require("./components/rpc/CRpcData");
 require("./components/rpc/CRpcSystem");
 
+require("./components/net/CNetDecodeBuffer");
+require("./components/net/CNetEncodeBuffer");
 require("./components/net/server/CBaseNetServer");
 require("./components/net/server/CTcpServer");
 require("./components/net/server/CUdpServer");
@@ -42,6 +51,7 @@ App.System = {
     name:null,
     serverIndex:0,
     init:function(){
+        App.Lib.CConfigMisc.Instance.init();
         App.Lib.Session.CSessionSystem.Instance.init();
         App.Lib.Agent.CAgentSystem.Instance.init();
         App.Lib.Channel.CChannelSystem.Instance.init();

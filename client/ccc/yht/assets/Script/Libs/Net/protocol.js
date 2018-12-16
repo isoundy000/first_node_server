@@ -1,4 +1,4 @@
-{
+module.exports = {
 	"Client":[
 		{"id":1,"name":"fight_token","parameters":"Bitch.PB.Structs.C2SConnectRequest"},
 		{"id":3,"name":"fight_token2"},

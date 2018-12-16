@@ -13,16 +13,14 @@ Class({
                 mCodesLength = mCodes.limit;
             }
             let id = info.id;
-            let nBuffer = new Buffer(6+mCodesLength);
+            let nBuffer = new Buffer(4+mCodesLength);
             nBuffer[0]=id>>8;
             nBuffer[1]=id&0xff;
-            nBuffer[2]=(index>>24) & 0xff;
-            nBuffer[3]=(index>>16) & 0xff;
-            nBuffer[4]=(index>>8) & 0xff;
-            nBuffer[5]=index & 0xff;
+            nBuffer[2]=(index>>8) & 0xff;
+            nBuffer[3]=index & 0xff;
             if(mCodesLength>0){
                 let mBuffer = mCodes.buffer;
-                mBuffer.copy(nBuffer,6,0,mCodes.limit);
+                mBuffer.copy(nBuffer,4,0,mCodes.limit);
             }
             return nBuffer;
         }catch(e){
@@ -45,8 +43,8 @@ Class({
     },
     onMessage:function(buff,session) {
         let id = (buff[0]<<8) | buff[1];
-        let id2 = ( buff[2]<<24) | (buff[3]<<16) | (buff[4]<<8) | buff[5];
-        let  mBuff = buff.slice(6,buff.length);
+        let id2 = ( buff[2]<<8) | buff[3];
+        let  mBuff = buff.slice(4,buff.length);
         let info =this.messageCfg[id];
         let name = this.messageNameCfg[id];
         let msg = null;

@@ -13,11 +13,9 @@ Class({
         self.server.on('message', function(data, client){
             client.send = self.send;
             client.server = self.server;
-            if(self.isFrontServer){
-                App.Lib.Protocol.CFrontProtoSystem.Instance.onMessage(data,client.session);
-            }else{
-                App.Lib.Protocol.CRpcProtoSystem.Instance.onMessage(data,client.session);
-            }
+            client.session = client;
+            client.id = "{0}_{1}".Format(client.address,client.port)
+            self.onClientData(data,client);
         });
         self.server.on('error', function(err){
             console.error('CUdpServer: msg - %s, stack - %s\n', err.message, err.stack);

@@ -1,5 +1,4 @@
 /*----- protocl -----*/
-Bitch.PB = {}
 Bitch.PB.Structs = Bitch.PB.newBuilder({})['import']({
   "package": "proto",
   "messages": [

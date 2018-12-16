@@ -9,7 +9,7 @@ var helper = {
     cfg:{
         src:"./protocol/",
         des:"../client/ccc/yht/assets/Script/Libs/Net/",
-        protocolFile:"protocol.json",
+        protocolFile:"protocol.js",
     },
     start:function(){
         var tmp= "front/";
@@ -45,7 +45,7 @@ var helper = {
             }
         }
 
-        var jsonContent = "{\n";
+        var jsonContent = "module.exports = {\n";
         jsonContent += "\t\"Client\":[\n";
         var first = true;
         for(var i=0;i<jsonData.Client.length;i++){
@@ -140,7 +140,6 @@ var helper = {
                 messages.messages.push(obj);
             }
             var str = "/*----- protocl -----*/\n";
-            str += cfg.namespace + " = {}\n";
             str += cfg.namespace +".Structs = Bitch.PB.newBuilder({})['import']("+JSON.stringify(messages, null, 2)+").build().proto;"
             fs.writeFileSync(file,str,"utf8");
         },
